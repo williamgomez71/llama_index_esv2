@@ -14,6 +14,7 @@ from typing import (
     cast,
 )
 
+import ast
 from aiostream import stream as async_stream
 
 from llama_index_spanish.agent.react.formatter import ReActChatFormatter
@@ -40,6 +41,7 @@ from llama_index_spanish.objects.base import ObjectRetriever
 from llama_index_spanish.tools import BaseTool, ToolOutput, adapt_to_async_tool
 from llama_index_spanish.tools.types import AsyncBaseTool
 from llama_index_spanish.utils import async_unit_generator, print_text, unit_generator
+from llama_index_spanish.agent.react.format_prompt_llama import format_prompt, find_more_similar_tool, get_system_and_user_prompt
 
 DEFAULT_MODEL_NAME = "gpt-3.5-turbo-0613"
 
@@ -389,19 +391,32 @@ class ReActAgent(BaseAgent):
         try:
             # Intenta obtener el elemento 'observation'
             observacion = reasoning_steps[1].observation
-            accion = reasoning_steps[0].action
-            print("Observación encontrada:", observacion)
-            print("action:", accion)
-            user_input= format_prompt(f"""Unicamente con el siguiente contexto y no con informacion que conoce.
-Contexto:
-----------------------------------------                          
-{observacion}
-responda o siga la  siguiente instruccion  del usuario:
-                      {message} """)
-            value = self._llm.complete(user_input)
-            print_text(value, "green")
-            response = AgentChatResponse(response = str(value.text))
-            return response, True
+            array = ast.literal_eval(observacion)
+            print(array)
+            print(type(array[1]))
+            if array[1]:
+                accion = reasoning_steps[0].action
+                print("Observación encontrada:", observacion)
+                print("action:", accion)
+                user_input= format_prompt(f"""Unicamente con el siguiente contexto y no con informacion que conoce.
+    Contexto:
+    ----------------------------------------                          
+    {observacion}
+    responda o siga la  siguiente instruccion  del usuario:
+                        {message} """)
+                value = self._llm.complete(user_input)
+                print_text(value, "green")
+                response = AgentChatResponse(response = str(value.text))
+                return response, True
+            else:
+                response = AgentChatResponse(response = str(array[0]))
+                print(response)
+                with open('/home/wgomez/Documents/GitHub/llama_index_spanish/logging.txt', 'a') as archivo:
+                    # Escribe una línea de texto
+                    archivo.write(f"-------------------answer----------------------------------------------------------------------\n")
+                    archivo.write(f"{array[0]}\n")
+                
+                return response, True
         except KeyError:
             # Manejar el caso en que la clave no exista
             print("El elemento 'observation' no existe en el objeto.")

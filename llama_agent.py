@@ -1,5 +1,5 @@
 
-from llama_index_es import (
+from llama_index_spanish import (
     SimpleDirectoryReader,
     ServiceContext,
     get_response_synthesizer,
@@ -8,11 +8,11 @@ from llama_index_es import (
     SummaryIndex
 )
 from typing import  List
-from llama_index_es.tools.function_tool import FunctionTool
+from llama_index_spanish.tools.function_tool import FunctionTool
 import re
 from robin_index import RobinManageIndex
-from llama_index_es.tools import QueryEngineTool, ToolMetadata
-from llama_index_es.agent import ReActAgent
+from llama_index_spanish.tools import QueryEngineTool, ToolMetadata
+from llama_index_spanish.agent import ReActAgent
 from robin_llm import RobinLLM
 from bs4 import BeautifulSoup
 """ march_2022 = SimpleDirectoryReader(input_files=["../data/10q/uber_10q_march_2022.pdf"]).load_data()
@@ -159,11 +159,32 @@ def search_internet(url: str) -> str:
     return texto
 
 
+def qa_general_questions(question: str) -> str:
+    """
+    Use this tool if you need to search in internet for information that you don't know.
+    """
+    with open('logging2.txt', 'a') as archivo:
+        # Escribe una línea de texto
+        archivo.write(f"-------------------answer----------------------------------------------------------------------\n")
+        archivo.write("general questions\n")
+    return ["no tengo informacion suficiente para responder tu pregunta, me puedes indicar si necesitas resumen de la pagina o de todo el documento?", False]
+    return question
 
-def summary_information( page = None)-> str:
+
+def summary_information(page = None)-> str:
     """
 Use esta herramienta si el usuario solicita algun tipo de resumen de un texto o de una pagina especifica del documento.
     """
+    print(page)
+    print(page)
+    print(page)
+    print(page)
+    print(page)
+    with open('logging2.txt', 'a') as archivo:
+        # Escribe una línea de texto
+        archivo.write(f"-------------------answer----------------------------------------------------------------------\n")
+        archivo.write("summary\n")
+    return ["no tengo informacion suficiente para responder tu pregunta, me puedes indicar si necesitas resumen de la pagina o de todo el documento?", False]
     return """ 
 En el año 1934, en una vieja casa de la calle 12 No. 3-62, funda el Dr. Jesús Cásas Manrique un pequeño Colegio con el nombre de LICEO DE LA INFANCIA, contando con el reducido número de 34 estudiantes.
 
@@ -178,17 +199,72 @@ Ante el futuro incierto del Cervantes que su propietario y Director preveía, en
 """
 
 
-function_tool = FunctionTool.from_defaults(fn=search_internet,description=" Utilice esta herramienta si necesita buscar en Internet información que no conoce, y también si el usuario solicita buscar en Internet SIEMPRE debe utilizar esta herramienta antes de darle la respuesta al usuario. Por ejemplo si el usuario indica: dame un resumen de esta pagina http://example.com debes usar este herramienta antes de dar la respuesta")
-function_tool2 = FunctionTool.from_defaults(fn=summary_information, description="Utilice esta herramienta si el usuario solicita algun tipo de resumen o sumarizacion de un texto o de una pagina especifica del documento. Esta herramienta puede generar resumenes de cualquier cosa" )
+#function_tool = FunctionTool.from_defaults(fn=search_internet,description="Utilice esta herramienta si necesita buscar en Internet información que no conoce. Por ejemplo si el usuario indica: dame informacion de este sitio http://example.com deberas usar este herramienta antes de dar la respuesta. Si el usuario no indica una url en la pregunta es mejor usar la siguiente herramienta y no esta.")
+function_tool = FunctionTool.from_defaults(fn=qa_general_questions, description="""Esta herramienta es para responder preguntas generales o especificas de un documento. No sirve para generar resumenes
+         A contiacion algunos ejemplos de preguntas que se pueden usar con esta herramienta:                                  
+        "Cómo puedo cambiar la contraseña de mi correo electrónico?"
+        "Qué ingredientes necesito para hacer una lasaña?"
+        "Cuál es la capital de Francia?"
+        "Cómo se calcula el área de un círculo?"
+        "Qué ejercicios son buenos para la espalda baja?"
+        "Que es la vida?"
+        use la pregunta del usuario como entrada para esta herramienta.
+        """)
+function_tool2 = FunctionTool.from_defaults(fn=summary_information, description="Utilice esta herramienta si el usuario solicita algun tipo de resumen o sumarizacion de un texto o de una pagina especifica de un documento. Esta herramienta puede generar resumenes de cualquier cosa. si el usuario solicita un resumen debes usar esta herramienta" )
 
 tools = [function_tool, function_tool2]
 
 
 agent = ReActAgent.from_tools(tools, llm=llm, verbose=True, max_iterations=2)
+
 #response = agent.chat("What was Uber's revenue growth in 2022?")
 #response = agent.chat("add 5  more  8998")
 #response = agent.chat("what is the current president in Colombia")
 #response = agent.chat("dame un resumen de la siguiente pagina https://www.liceocervantes.edu.co/index.php/nuestro-liceo/historia")
 #response = agent.chat("en orden cronologico dame los puntos mas relevantes de la informacion de esta pagina https://www.liceocervantes.edu.co/index.php/nuestro-liceo/historia")
-response = agent.chat("tienes un resumen del documento pagina por pagina?")
-print(str(response))
+#response = agent.chat("Cómo puedo cambiar la contraseña de mi correo electrónico??")
+#response = agent.chat("tienes un resumen de la pagina del documento")
+
+agent2 = ReActAgent.from_tools(tools, llm=llm, verbose=True, max_iterations=2)
+value = """human: tienes un resumen del documento en la pagina ?
+assintant: no tengo informacion suficiente para responder tu pregunta, me puedes indicar si necesitas resumen de la pagina o de todo el documento?
+human: pagina 33
+"""
+#response = agent2.chat(value)
+#print(str(response))
+
+
+preguntas = [
+    # Enviar email
+    "Escribe un correo para confirmar la reunión de mañana.",
+    "Notifica a los clientes sobre la actualización de nuestro producto.",
+    "Envía una invitación para el evento de caridad de este fin de semana.",
+    "Remite el informe de ventas a la gerencia.",
+    "Informa al equipo sobre el cambio en la política de vacaciones.",
+    # Preguntas generales
+    "Cómo puedo cambiar la contraseña de mi correo electrónico?",
+    "que es la vida?",
+    "de que se trata la vida?",
+    "tienes un resumen de la pagina del documento",
+    "¿Qué ingredientes necesito para hacer una lasaña?",
+    "¿Cuál es la capital de Francia?",
+    "¿Cómo se calcula el área de un círculo?",
+    "¿Qué ejercicios son buenos para la espalda baja?",
+    # Buscar por internet
+    "Encuentra un buen restaurante italiano cerca de mí.",
+    "Busca las últimas noticias sobre el cambio climático.",
+    "Necesito información sobre los mejores teléfonos inteligentes de 2023.",
+    "¿Cuáles son los estrenos de cine de esta semana?",
+    "Busca cursos en línea para aprender programación.",
+    # Generar resumen
+    "Haz un resumen del último informe de mercado financiero.",
+    "Necesito un resumen del libro 'El Principito'.",
+    "Resume las características principales de la Revolución Industrial.",
+    "Por favor, resume las noticias principales de hoy.",
+    "Elabora un resumen ejecutivo de la reunión de ayer."
+]
+
+
+for question in  preguntas:
+    agent2 = ReActAgent.from_tools(tools, llm=llm, verbose=False, max_iterations=2)
+    response = agent2.chat(question)

@@ -3,19 +3,19 @@ from typing import Optional, List, Mapping, Any
 import requests
 import json
 from datetime import date
-from llama_index_es import (
+from llama_index_spanish import (
     ServiceContext,
     SimpleDirectoryReader,
     SummaryIndex
 )
-from llama_index_es.callbacks import CallbackManager
-from llama_index_es.llms import (
+from llama_index_spanish.callbacks import CallbackManager
+from llama_index_spanish.llms import (
     CustomLLM,
     CompletionResponse,
     CompletionResponseGen,
     LLMMetadata,
 )
-from llama_index_es.llms.base import llm_completion_callback
+from llama_index_spanish.llms.base import llm_completion_callback
 import Levenshtein as lev
 
 # set context window size
@@ -62,6 +62,52 @@ def count_tokens(prompt):
         print(f'Error en la solicitud POST. Código de estado HTTP: {respuesta.status_code}')
         return 10
 
+def format_prompt_pandas(instruction, system_prompt=None, conversation="", languaje="English"):
+    # Prompt
+    if B_INST in instruction and E_INST  in instruction:
+        return instruction
+    else:
+        conversation =  [
+                {
+                    "role": "user",
+                    "content": ""
+                }
+            ]
+        
+        if system_prompt == None:
+            system_promptw = """You are a helpful assistant, you will use the provided context to answer user questions. Read the given context before answering questions and think step by step. If you can not answer a user question based on the provided context, inform the user that based on the context you can not answer the question, do not use any other information for answering user"""
+            system_prompt = """You are a helpful assistant, expert in pandas framework"""
+            system_prompts = "You are designed to help with a variety of tasks, from answering questions to providing summaries to other types of analyses, Your knowledge reaches February 2023, you do not have other information beyond February 2023, and therefore you must search the internet to have updated information "
+            system_prompts = f"Estás diseñado para ayudar con una variedad de tareas, desde responder preguntas hasta proporcionar resúmenes y otros tipos de análisis. Tus conocimientos llegan a febrero de 2023, no tienes otra información más allá de febrero de 2023 hoy es 25/10/2024, por lo tanto, debes buscar en Internet para tener información actualizada, ademas siempre debes buscar en internet antes de responder al usuario si este lo esta solicitando."
+        if languaje != "English":
+            system_prompt = system_prompt + f""", also you  have to translate the answer to {languaje} """
+        
+        conversation[-1]["content"] = instruction
+        prompt = format_prompt_llama(conversation, system_prompt)
+        return prompt
+
+
+def format_prompt_llama(conversation, system_prompt):
+    output = ""
+    tag_close = False
+    for item in conversation:
+        role = item["role"]
+        assert es_rol_valido(role), f"¡invalid role '{role}' is not valid"
+        content = item["content"].strip()
+        if role == "system":
+            output += f"<s>{B_INST} {B_SYS}{system_prompt}{E_SYS}"
+            tag_close = True
+        elif role == "user":
+            if tag_close:
+                output += f"{content} {E_INST} "
+                tag_close = False
+            else:
+                output += f"<s>{B_INST} {content} {E_INST} "
+                tag_close = True
+        elif role == "assistant":
+            output += f"{content} </s>"
+            tag_close = False
+    return output
 
 def format_prompt(conversation, system_prompt):
     output = ""

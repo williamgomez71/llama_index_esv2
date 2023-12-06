@@ -1,10 +1,10 @@
 
-from llama_index_es.embeddings import HuggingFaceEmbedding
+from llama_index_spanish.embeddings import HuggingFaceEmbedding
 #   "/home/wgomez/Desktop/robin/envllama/lib/python3.10/site-packages/llama_index/llms/utils.py", 
 
 #   "/home/wgomez/Documents/GitHub/workless/envworkless/lib/python3.10/site-packages/llama_index/llms/utils.py", 
 
-from llama_index_es.indices.document_summary import DocumentSummaryIndexRetriever
+from llama_index_spanish.indices.document_summary import DocumentSummaryIndexRetriever
 try:
     from  libraries.robin_llm import RobinLLM
     from  libraries.robin_postprocessor import RobinNodePostprocessor
@@ -12,7 +12,7 @@ except ImportError:
     from robin_llm import RobinLLM
     from robin_postprocessor import RobinNodePostprocessor
 
-from llama_index_es import (
+from llama_index_spanish import (
     SimpleDirectoryReader,
     ServiceContext,
     get_response_synthesizer,
@@ -21,35 +21,45 @@ from llama_index_es import (
     SummaryIndex
 )
 
-from llama_index_es.indices.document_summary import DocumentSummaryIndex
+from format_prompt_llama import format_prompt_pandas
+
+from llama_index_spanish.indices.document_summary import DocumentSummaryIndex
 import os
-from llama_index_es.node_parser import SimpleNodeParser
-from llama_index_es.storage.storage_context import StorageContext
-from llama_index_es import KnowledgeGraphIndex, StorageContext, load_index_from_storage
-from llama_index_es.retrievers import (
+from llama_index_spanish.node_parser import SimpleNodeParser
+from llama_index_spanish.storage.storage_context import StorageContext
+from llama_index_spanish import KnowledgeGraphIndex, StorageContext, load_index_from_storage
+from llama_index_spanish.retrievers import (
     BaseRetriever,
     VectorIndexRetriever,
     KGTableRetriever,
     SummaryIndexRetriever,
     BM25Retriever
 )
-from llama_index_es.schema import  Node, Document
-from llama_index_es.query_engine import KnowledgeGraphQueryEngine
+from llama_index_spanish.schema import  Node, Document
+from llama_index_spanish.query_engine import KnowledgeGraphQueryEngine
 
-from llama_index_es.indices.loading import load_graph_from_storage
-from llama_index_es.graph_stores import NebulaGraphStore
+from llama_index_spanish.indices.loading import load_graph_from_storage
+from llama_index_spanish.graph_stores import NebulaGraphStore
 
 from IPython.display import Markdown, display
 
-from llama_index_es.indices.document_summary import (
+from llama_index_spanish.indices.document_summary import (
     DocumentSummaryIndexLLMRetriever,  DocumentSummaryIndexEmbeddingRetriever, 
 )
 
-from llama_index_es import set_global_service_context
+from llama_index_spanish import set_global_service_context
 
-from llama_index_es.indices.postprocessor import SentenceTransformerRerank
+from llama_index_spanish.indices.postprocessor import SentenceTransformerRerank
 
-from llama_index_es import Prompt
+from llama_index_spanish import Prompt
+
+import logging
+import sys
+from IPython.display import Markdown, display
+
+import pandas as pd
+from llama_index_spanish.query_engine import PandasQueryEngine
+
 
 """ LLM-based Retrieval: get collections of document summaries and request LLM to identify the relevant documents + relevance score
 Embedding-based Retrieval: utilize summary embedding similarity to retrieve relevant documents, and impose a top-k limit to the number of retrieved results.
@@ -493,3 +503,77 @@ class RobinManageIndex():
             node_postprocessors=[rerank]
         )
         return query_engine
+    
+    def get_pandas_loader2(self):
+        from pathlib import Path
+        from llama_index_spanish import download_loader
+
+        PandasCSVReader = download_loader("PandasCSVReader")
+
+        loader = PandasCSVReader()
+        documents = loader.load_data(file=Path('./police.csv'))
+        print(documents)
+
+    def get_pandas_loade3r(self):
+        from llama_index_spanish import download_loader
+        import pandas as pd
+        from pathlib import Path
+        PandasCSVReader = download_loader("PandasCSVReader")
+        loader = PandasCSVReader()
+        documents = loader.load_data(file=Path('./police.csv'))
+        PandasAIReader = download_loader("PandasAIReader")
+        loader = PandasAIReader(llm=self._llm)
+        loader = PandasAIReader(llm=llm)
+        response = reader.run_pandas_ai(
+            df, 
+            "Which are the 5 happiest countries?", 
+            is_conversational_answer=False
+        )
+    def get_pandas_loader(self):
+        from llama_index_spanish import download_loader
+        import pandas as pd
+        from pathlib import Path
+        PandasCSVReader = download_loader("PandasCSVReader")
+        loader = PandasCSVReader()
+        documents = loader.load_data(file=Path('./police.csv'))
+        PandasAIReader = download_loader("PandasAIReader")
+        loader = PandasAIReader(llm=self._llm)
+        loader = PandasAIReader(llm=llm)
+        response = reader.run_pandas_ai(
+            df, 
+            "Which are the 5 happiest countries?", 
+            is_conversational_answer=False
+        )
+
+
+    def a(self):
+        df = pd.DataFrame(
+            {
+                "city": ["Toronto", "Tokyo", "Berlin"],
+                "population": [2930000, 13960000, 3645000],
+            }
+        )
+        print(df[df['population'].idxmax()])
+        print(df.sort_values(by='population', ascending=False).iloc[0]['city'])
+        query_engine = PandasQueryEngine(df=df, verbose=True, service_context=self.service_context)
+        return query_engine
+
+df = pd.DataFrame(
+    {
+        "city": ["Toronto", "Tokyo", "Berlin"],
+        "population": [2930000, 13960000, 3645000],
+    }
+)
+#print(df[df['population'].idxmax()])
+print(df.sort_values(by='population', ascending=False).iloc[0]['city'])     
+
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
+index = RobinManageIndex()
+query_engine = index.a()
+response = query_engine.query(
+            "Cual es la cuidad con mayor poblacion?",
+        )
+response = query_engine.query(
+            "What is the city with the highest population?",
+        )

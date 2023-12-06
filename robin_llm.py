@@ -2,15 +2,15 @@ import torch
 from typing import Any
 import requests
 import json
-from llama_index_es.agent.react.format_prompt_llama import format_prompt
-from llama_index_es.callbacks import CallbackManager
-from llama_index_es.llms import (
+from llama_index_spanish.agent.react.format_prompt_llama import format_prompt, format_prompt_pandas
+from llama_index_spanish.callbacks import CallbackManager
+from llama_index_spanish.llms import (
     CustomLLM,
     CompletionResponse,
     CompletionResponseGen,
     LLMMetadata,
 )
-from llama_index_es.llms.base import llm_completion_callback
+from llama_index_spanish.llms.base import llm_completion_callback
 import Levenshtein as lev
 
 # set context window size
@@ -81,10 +81,14 @@ class RobinLLM(CustomLLM):
         
         with open('logging.txt', 'a') as archivo:
             # Escribe una línea de texto
-            archivo.write(f"-------------------prompt----------------------------------------------------------------------\n")
+            archivo.write(f"-------------------promptall----\n")
             archivo.write(f"{prompt}\n")
         max_prompt_len, tokens = count_tokens(prompt)
-        prompt = format_prompt(prompt)
+        prompt = format_prompt_pandas(prompt)
+        with open('logging.txt', 'a') as archivo:
+            # Escribe una línea de texto
+            archivo.write(f"-------------------promptall----\n")
+            archivo.write(f"{prompt}\n")
         payload = {
         "prompt": prompt,
         "n_predict": 5000,

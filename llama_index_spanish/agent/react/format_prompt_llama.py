@@ -2,7 +2,7 @@ import requests
 import json
 from datetime import date
 import Levenshtein as lev
-from llama_index_es.llms import (
+from llama_index_spanish.llms import (
     CompletionResponse,
 )
 
@@ -11,7 +11,7 @@ from typing import (
     List
 )
 
-from llama_index_es.llms.base import  ChatMessage, ChatResponse
+from llama_index_spanish.llms.base import  ChatMessage, ChatResponse
 
 # set context window size
 context_window = 5000
@@ -119,6 +119,35 @@ def format_prompt(instruction, system_prompt=None, conversation="", languaje="En
         prompt = format_prompt_llama(conversation, system_prompt)
         return prompt
 
+def format_prompt_pandas(instruction, system_prompt=None, conversation="", languaje="English"):
+    # Prompt
+    if B_INST in instruction and E_INST  in instruction:
+        return instruction
+    else:
+        conversation =  [
+                {
+                    "role": "system",
+                    "content": "system_prompt"
+                },
+                {
+                    "role": "user",
+                    "content": ""
+                }
+            ]
+        
+        if system_prompt == None:
+            system_promptw = """You are a helpful assistant, you will use the provided context to answer user questions. Read the given context before answering questions and think step by step. If you can not answer a user question based on the provided context, inform the user that based on the context you can not answer the question, do not use any other information for answering user"""
+            system_prompt = """You are a helpful assistant, expert in pandas framework you only have to answer with the Python expression that can be called with the eval() never explain your answer. Esta expresión no debe tener ningun tipo de comillas ni al inicio ni al final ni tampoco eval() solo la exprecion que se ejecutara"""
+            system_prompt = """Eres un asistente útil, experto en pandas framework, solo tienes que responder con la expresión de Python que se puede llamar con eval(), nunca expliques tu respuesta. La respuesta de salida no debe tener ningun tipo de comillas ni al inicio ni al final, ni tampoco debera estar dentro de eval(), solo la expresión que se ejecuta"""
+            system_prompts = "You are designed to help with a variety of tasks, from answering questions to providing summaries to other types of analyses, Your knowledge reaches February 2023, you do not have other information beyond February 2023, and therefore you must search the internet to have updated information "
+            system_prompts = f"Estás diseñado para ayudar con una variedad de tareas, desde responder preguntas hasta proporcionar resúmenes y otros tipos de análisis. Tus conocimientos llegan a febrero de 2023, no tienes otra información más allá de febrero de 2023 hoy es 25/10/2024, por lo tanto, debes buscar en Internet para tener información actualizada, ademas siempre debes buscar en internet antes de responder al usuario si este lo esta solicitando."
+        if languaje != "English":
+            system_prompt = system_prompt + f""", also you  have to translate the answer to {languaje} """
+        
+        conversation[-1]["content"] = instruction
+        prompt = format_prompt_llama(conversation, system_prompt)
+        return prompt
+
 
 def format_prompt_conversation(context, conversation, languaje="English"):
     # Prompt
@@ -140,20 +169,17 @@ def format_prompt_conversation(context, conversation, languaje="English"):
 def find_more_similar_tool(objetivo, lista = None):
     # Dividir el mensaje en líneas 
     tool_list = []
-    print("lista")
-    print("lista")
-    print(lista)
-    print(objetivo)
     if "Action:" in objetivo:
         if lista == None:
             lista = ["search_internet", "add_numbers", "summary_tool"]
         else:
+            
             for tool in lista:
-                print(dir(tool))
-                print(tool)
                 tool_list.append(tool.metadata.get_name())
-                print(tool_list)
             lista = tool_list
+        print("lista")
+        print(lista)
+        print("lista")
         lineas = objetivo.split('\n')
         # Buscar la línea que comienza con "Action:"
         for linea in lineas:
@@ -230,6 +256,3 @@ def trim_string(cadena, separador="</s><s>[INST"):
         return cadena
     # Devolver la primera parte
     return partes[0]
-
-
-        

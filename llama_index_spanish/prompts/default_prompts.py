@@ -1,7 +1,7 @@
 """Set of default prompts."""
 
-from llama_index_es.prompts.base import PromptTemplate
-from llama_index_es.prompts.prompt_type import PromptType
+from llama_index_spanish.prompts.base import PromptTemplate
+from llama_index_spanish.prompts.prompt_type import PromptType
 
 ############################################
 # Tree

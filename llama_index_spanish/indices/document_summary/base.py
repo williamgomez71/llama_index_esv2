@@ -8,7 +8,7 @@ This summary can be used for retrieval.
 import logging
 from collections import defaultdict
 from enum import Enum
-from typing import Any, Dict, Optional, Sequence, Union, cast
+from typing import Any, Dict, Optional, Sequence, Union, cast, List
 
 from llama_index_spanish.core import BaseRetriever
 from llama_index_spanish.data_structs.document_summary import IndexDocumentSummary
@@ -111,7 +111,7 @@ class DocumentSummaryIndex(BaseIndex[IndexDocumentSummary]):
                 Defaults to DocumentSummaryRetrieverMode.EMBEDDING.
 
         """
-        from llama_index_es.indices.document_summary.retrievers import (
+        from llama_index_spanish.indices.document_summary.retrievers import (
             DocumentSummaryIndexEmbeddingRetriever,
             DocumentSummaryIndexLLMRetriever,
         )

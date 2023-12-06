@@ -35,6 +35,13 @@ DEFAULT_INSTRUCTION_STR = (
     "quotes.\n"
 )
 
+DEFAULT_INSTRUCTION_STR = (
+     "Deseamos convertir esta consulta a código Python ejecutable usando Pandas.\n"
+     "La última línea de código debe ser una expresión de Python que pueda llamarse "
+     "con la función eval(). Esta expresión debería representar una solución "
+     "a la consulta. Esta expresión no debe tener ningun tipo de comillas ni al inicio ni al final ni tampoco eval(), solo la expresión que se ejecuta"
+     "\n"
+)
 
 def default_output_processor(
     output: str, df: pd.DataFrame, **output_kwargs: Any
@@ -58,7 +65,8 @@ def default_output_processor(
     # NOTE: inspired from langchain's tool
     # see langchain.tools.python.tool (PythonAstREPLTool)
     try:
-        tree = ast.parse(output)
+        print(output)
+        tree = ast.parse(output.strip())
         module = ast.Module(tree.body[:-1], type_ignores=[])
         safe_exec(ast.unparse(module), {}, local_vars)  # type: ignore
         module_end = ast.Module(tree.body[-1:], type_ignores=[])

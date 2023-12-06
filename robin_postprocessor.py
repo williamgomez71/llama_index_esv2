@@ -1,8 +1,8 @@
-from llama_index_es import QueryBundle
-from llama_index_es.schema import NodeWithScore
+from llama_index_spanish import QueryBundle
+from llama_index_spanish.schema import NodeWithScore
 from typing import List, Optional
-from llama_index_es.indices.postprocessor import SentenceTransformerRerank
-from llama_index_es.indices.postprocessor import PrevNextNodePostprocessor
+from llama_index_spanish.indices.postprocessor import SentenceTransformerRerank
+from llama_index_spanish.indices.postprocessor import PrevNextNodePostprocessor
 
 class RobinNodePostprocessor:
 
