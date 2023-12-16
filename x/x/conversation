@@ -1,0 +1,261 @@
+[{
+    "role": "user",
+    "content": "hasme un resumen de la fabula de la liebre y la tortuga",
+    "status": "finalized",
+    "flow": "summary"
+},{
+    "role": "assistant",
+    "content": " La f\u00e1bula de la liebre y la tortuga es una historia que ense\u00f1a a los ni\u00f1os la importancia del esfuerzo y la perseverancia. En ella, una liebre muy orgullosa y vanidosa se burla de la lentitud de una tortuga, y luego se da cuenta de su error al ver c\u00f3mo la tortuga gana una carrera a pesar de su lentitud. La f\u00e1bula ense\u00f1a que no hay que burlarse jam\u00e1s de los dem\u00e1s y que el exceso de confianza puede ser un obst\u00e1culo para alcanzar nuestros objetivos. Adem\u00e1s, tambi\u00e9n ense\u00f1a que nadie es mejor que nadie y que todo depende del esfuerzo y la perseverancia.",
+    "status": "finalized",
+    "flow": "summary"
+},{
+    "role": "user",
+    "content": "resumen Sara y Luc\u00eda, un cuento sobre la sinceridad",
+    "status": "finalized",
+    "flow": "summary"
+},{
+    "role": "assistant",
+    "content": " El cuento de Sara y Luc\u00eda es una historia que ense\u00f1a la importancia de ser sincera y honesta con los dem\u00e1s. La historia cuenta c\u00f3mo dos amigas, Sara y Luc\u00eda, se enfrentan a un desaf\u00edo cuando deciden compartir sus secretos entre ellas. A pesar de su confianza en s\u00ed mismas, ambas cometen errores que les llevan a perder la confianza en los dem\u00e1s. La historia muestra c\u00f3mo la falta de sinceridad y la b\u00fasqueda de la aprobaci\u00f3n de los dem\u00e1s pueden tener consecuencias negativas en las relaciones interpersonales. El cuento tambi\u00e9n ense\u00f1a que es importante ser honesto y transparente con los dem\u00e1s, ya que esto puede ayudar a construir relaciones m\u00e1s s\u00f3lidas y duraderas.",
+    "status": "finalized",
+    "flow": "summary"
+},{
+    "role": "user",
+    "content": "dame un resumen de la pagina 4",
+    "status": "finalized",
+    "flow": "summary"
+},{
+    "role": "assistant",
+    "content": "Page: 4\nResumen:  El texto es un cuento infantil titulado \"Cuento sobre la amabilidad para ni\u00f1os\" escrito por Susanna Arjona Borrego.\n\nEl primer p\u00e1rrafo introduce el personaje principal, Daniel, y su habitaci\u00f3n donde juega y monta y desmonta palabras sin cesar.\n\nEn el segundo p\u00e1rrafo se describe c\u00f3mo Daniel est\u00e1 preparando un regalo especial para sus padres, que es muy divertido ver la cara de felicidad cuando descubre por la ma\u00f1ana un \"buenos d\u00edas\" o un \"te quiero\" debajo de la almohada.\n\nEn el tercer p\u00e1rrafo se destaca c\u00f3mo las palabras son amables y bonitas, cortas, largas, que suenan bien y hacen sentir bien: gracias, te quiero, buenos d\u00edas, por favor, lo siento, me gustas.\n\nEn el cuarto p\u00e1rrafo se explica c\u00f3mo Daniel es un mago de las palabras amables y sabe que las palabras son poderosas y pueden abrir puertas para los dem\u00e1s.\n\nEl quinto p\u00e1rrafo es una pregunta: \u00bfquieres intentarlo t\u00fa y ser un mago de las palabras amables?\n\nEn resumen, este texto es un cuento infantil que ense\u00f1a la importancia de la amabilidad y c\u00f3mo las palabras pueden ser m\u00e1gicas para hacer felices a los dem\u00e1s.",
+    "status": "finalized",
+    "flow": "summary"
+},{
+    "role": "user",
+    "content": "dame un resumen de la pagina 7",
+    "status": "finalized",
+    "flow": "summary"
+},{
+    "role": "assistant",
+    "content": "",
+    "status": "finalized",
+    "flow": "summary"
+},{
+    "role": "user",
+    "content": "Quien es uga?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " Uga es una tortuga en la f\u00e1bula de la liebre y la tortuga.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "que preguntas puedo hacer sobre el texto?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " Puedes hacer preguntas sobre el texto que te permita comprender mejor su contenido y estructura. Algunas preguntas que podr\u00edas hacer son:\n\n* \u00bfQu\u00e9 es lo que se ense\u00f1a en este cuento?\n* \u00bfCu\u00e1l es la lecci\u00f3n que se desprende de este cuento?\n* \u00bfQu\u00e9 caracter\u00edsticas tiene el personaje principal (la tortuga) y c\u00f3mo las muestra en la historia?\n* \u00bfQu\u00e9 se puede aprender sobre la perseverancia a trav\u00e9s de esta historia?\n* \u00bfC\u00f3mo se relaciona la historia con la vida real?\n* \u00bfHay alg\u00fan mensaje o moral que se desprende de esta historia?\n* \u00bfQu\u00e9 es lo que te gustar\u00eda saber m\u00e1s sobre este cuento?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "\u00bfQu\u00e9 caracter\u00edsticas tiene el personaje principal (la tortuga) y c\u00f3mo las muestra en la historia?",
+    "status": "finalized",
+    "flow": "summary"
+},{
+    "role": "assistant",
+    "content": " El personaje principal de la historia, la tortuga, tiene varias caracter\u00edsticas que se muestran en la misma. En primer lugar, es una persona muy lenta y met\u00f3dica en su trabajo, siempre caminando despacio y sin detenerse. Tambi\u00e9n es muy confiada en s\u00ed misma y no se da por vencida f\u00e1cilmente. Adem\u00e1s, es muy perseverante y sigue adelante incluso cuando todo parece perdido.\n\nEn la historia, la tortuga muestra estas caracter\u00edsticas al seguir adelante lentamente y sin detenerse, a pesar de que la liebre se burlaba de ella y le dec\u00eda que nunca podr\u00eda ganar la carrera. La tortuga tambi\u00e9n es muy confiada en s\u00ed misma y sigue adelante, incluso cuando ve a la liebre ganando la carrera. Finalmente, la tortuga muestra su perseverancia al seguir adelante y alcanzar la meta, aunque ya era tarde para ganar.\n\nEn resumen, la tortuga es un personaje muy caracterizado en la historia, que muestra sus caracter\u00edsticas de lentitud, confianza y perseverancia a lo largo del relato.",
+    "status": "finalized",
+    "flow": "summary"
+},{
+    "role": "user",
+    "content": "\u00bfQu\u00e9 caracter\u00edsticas tiene la tortuga?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " La tortuga es una caracter\u00edstica de la f\u00e1bula que se describe en el cuento infantil \"La liebre y la tortuga\". En este cuento, la tortuga es descrita como lenta y constante en su andar, lo que le permite alcanzar su meta a pesar de la ventaja que ten\u00eda la liebre. Adem\u00e1s, la tortuga se muestra confiada en s\u00ed misma y no se rinde ante los obst\u00e1culos que encuentra en el camino.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "\u00bfC\u00f3mo se relaciona la historia con la vida real?",
+    "status": "finalized",
+    "flow": "summary"
+},{
+    "role": "assistant",
+    "content": "Entiendo que requieres una resumen sin embargo no entiendo el contexto, por favor indicame de manera mas especifica si requieres un resumen de una pagina y el  numero de la misma, rango de paginas 5 a 10 por ejemplo o un resumen general.",
+    "status": "pending",
+    "flow": "summary"
+},{
+    "role": "user",
+    "content": "dame un resumen general",
+    "status": "finalized",
+    "flow": "summary"
+},{
+    "role": "assistant",
+    "content": " El texto es un cuento infantil que habla sobre la perseverancia y el valor del esfuerzo. La historia sigue a Uga, una tortuga que siempre llega tarde y no consigue premios por su rapidez en realizar tareas. Un d\u00eda, decide que ya no quiere seguir siendo criticada por sus compa\u00f1eros y deciden trabajar juntos para lograr sus metas.\n\nEl texto describe c\u00f3mo Uga se esfuerza diariamente para completar sus tareas, incluso cuando es dif\u00edcil o sencillo. La tortuga aprende que no importa si no consigue marcarse grandes metas, lo importante es acudir a todas las peque\u00f1as tareas que contribuyen a lograr grandes fines.\n\nEste texto puede responder preguntas como: \u00bfQu\u00e9 es la perseverancia y por qu\u00e9 es importante? \u00bfC\u00f3mo se puede aprender a trabajar duro y no darte por vencido? \u00bfQu\u00e9 significa \"acudir a todas las peque\u00f1as tareas que contribuyen a lograr grandes fines\"? \u00bfQu\u00e9 lecci\u00f3n podemos aprender de la historia de Uga, la tortuga?",
+    "status": "finalized",
+    "flow": "summary"
+},{
+    "role": "user",
+    "content": "Como se llama la tortuga?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " La tortuga se llama Uga.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "Que dijo la hormiguita?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " La hormiguita dijo: \"Lo que verdaderamente cuenta no es hacer el trabajo en un tiempo r\u00e9cord; lo importan te es acabar realiz\u00e1ndolo lo mejor que sabes, pues siempre te quedar\u00e1 la recompensa de haberlo conseguido.\"",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "De acuerdo a la primera pagina, porque estaba feliz la tortuga",
+    "status": "finalized",
+    "flow": "summary"
+},{
+    "role": "assistant",
+    "content": "Entiendo que requieres una resumen sin embargo no entiendo el contexto, por favor indicame de manera mas especifica si requieres un resumen de una pagina y el  numero de la misma, rango de paginas 5 a 10 por ejemplo o un resumen general.",
+    "status": "pending",
+    "flow": "summary"
+},{
+    "role": "user",
+    "content": "porque estaba feliz la tortuga?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " La tortuga estaba feliz porque hab\u00eda encontrado su propia felicidad en el esfuerzo y la perseverancia. Aunque no logr\u00f3 alcanzar sus metas, se dio cuenta de que cada d\u00eda consegu\u00eda lo poquito que se propon\u00eda y se sinti\u00f3 satisfecha con ese progreso.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "Cuantas moscas hay en el panal de miel?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " Seg\u00fan el texto, hay dos mil moscas que acudieron al panal de miel.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "Que les paso a las moscas en el panal de miel?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " Las moscas en el panal de miel se ahogaron debido a que sus patas se prendieron en la miel y ya no pod\u00edan volar.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "Cuantos clavos clavo el ni\u00f1o?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " El ni\u00f1o clav\u00f3 37 clavos en la cerca.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "Porque el ni\u00f1o clavo clavos?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " El ni\u00f1o clav\u00f3 clavos en la cerca de detr\u00e1s de la casa porque su padre le dijo que cada vez que perdiera la calma, \u00e9l deb\u00eda clavar un clavo en la cerca.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "Que pasa cuando se hacen las cosas de mal genio?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " Cuando se hacen las cosas de mal genio, es decir, con un car\u00e1cter negativo o enfadado, pueden dejar una cicatriz en la persona que lo hace. Esta cicatriz puede ser f\u00edsica o emocional y puede afectar negativamente su vida y su relaci\u00f3n con los dem\u00e1s. Adem\u00e1s, el mal genio puede generar conflictos y problemas en la vida cotidiana. Por lo tanto, es importante aprender a controlar el mal genio y a manejarlo de manera saludable para evitar estos efectos negativos.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "Quien es Daniel?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " Daniel es un personaje del cuento \"Cuento sobre la amabilidad para ni\u00f1os\" de Susanna Arjona Borrego.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "Porque perdio la liebre?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " La liebre perdi\u00f3 la carrera porque se detuvo a descansar antes de llegar a la meta, mientras que la tortuga sigui\u00f3 caminando lentamente pero sin detenerse.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "Que tenia la tortuga que no tenia la liebre?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " La tortuga no ten\u00eda la liebre. En la f\u00e1bula, la tortuga se burl\u00f3 de la liebre y le dijo que nunca podr\u00eda alcanzar su meta debido a su lentitud. Sin embargo, la tortuga termin\u00f3 ganando la carrera.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "Quien es mas astuta la liebre o la tortuga?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " La liebre es m\u00e1s astuta que la tortuga en esta f\u00e1bula. La liebre se burl\u00f3 de la tortuga y le dijo que no podr\u00eda ganar una carrera, pero luego se rindi\u00f3 y perdi\u00f3. En cambio, la tortuga trabaj\u00f3 duro y logr\u00f3 ganar la carrera.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "Quien se\u00f1alo los puntos de partida de la carrera?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " El b\u00faho se\u00f1al\u00f3 los puntos de partida y de llegada.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "Es mas rapida la liebre o la tortuga?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " La liebre es m\u00e1s r\u00e1pida que la tortuga en la f\u00e1bula de la liebre y la tortuga.",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "user",
+    "content": "Quien se burlo de la tortuga?",
+    "status": "finalized",
+    "flow": "general_questions"
+},{
+    "role": "assistant",
+    "content": " La liebre se burlo de la tortuga en la f\u00e1bula.",
+    "status": "finalized",
+    "flow": "general_questions"
+}]

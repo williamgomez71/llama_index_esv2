@@ -570,6 +570,26 @@ print(df.sort_values(by='population', ascending=False).iloc[0]['city'])
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 index = RobinManageIndex()
+
+vector = index.load_persistent_index("./x/x/summary")
+
+def get_text_nodes(
+    index
+):
+    """Retrieve nodes."""
+    print("get_text_nodes(index)")
+    print("get_text_nodes(index)")
+    print("get_text_nodes(index)")
+    print("get_text_nodes(index)")
+    nodes = index.docstore.docs.values()
+    print(nodes)
+    summaries = []
+    for node in nodes[0]:
+        print("node.get_content()")
+        print("node.get_content()")
+        print(node.get_content())
+get_text_nodes(vector)
+exit()
 query_engine = index.a()
 response = query_engine.query(
             "Cual es la cuidad con mayor poblacion?",
